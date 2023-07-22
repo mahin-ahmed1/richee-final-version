@@ -1,0 +1,223 @@
+/*
+Theme Name: Richee
+Theme URI: 
+Author: Mahin Ahmed
+Author URI: https://github.com/mahin-ahmed1
+Description: Richee is a great looking personal portfolio WordPress theme. You can build a powerful Portfolio website with the Richee theme. Richee will make your Website look more impressive and attractive. If you are a freelancer, designers, developers, photographers artists and all other professionals and want to build your Portfolio website then Richee is a best theme for you. Richee is a very easy-to-use, easily customizable WordPress theme that helps you to build your website in a few minutes. The theme includes lots of customization options that allows you to change the every single visual content of  demo without touching to single line of codes.
+Version: 1.0.0
+Tested up to: 5.4
+Requires PHP: 5.6
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+Text Domain: richee
+Tags: one-column, custom-menu, editor-style, translation-ready, full-width-template, flexible-header, theme-options, portfolio, photography
+*/
+
+body{
+	background-color: #ffff;
+}
+.content-area article{
+	margin-bottom: 30px;
+	padding: 50px;
+  border: 2px solid #cbcbcb;
+  border-radius: 4px;
+}
+.content-area article span{
+	color: #00de2e;
+}
+.menu-btn{
+  z-index:+2;
+}
+.content-area .richee-post-meta{
+	max-width: 400px;
+	border-top: 1.5px solid #43ff43;
+	border-bottom: 1.5px solid #43ff43;
+	margin-bottom: 10px;
+}
+.blog-read-more{
+	text-decoration: none;
+    padding: 15px 25px;
+    display: inline-block;
+    border: 2px solid #999999;
+    margin-top: 30px;
+    border-radius: 4px;
+    color: #646464;
+    transition: .4s;
+}
+.blog-read-more:hover{
+	color: black;
+	border:2px solid #43ff43 ;
+}
+#primary{
+	padding: 60px 30px;
+}
+.sidebar{
+	border: 2px solid silver;
+	padding: 32px;
+}
+.entry-header .entry-title a{
+	color: #00de00;
+    font-weight: 500;
+    text-decoration: none;
+
+}
+#wp-block-search__input-1{
+	max-width: 80%;
+	border: 2px solid #00eb00;
+}
+
+.wp-block-search__button {
+    min-width: 30%;
+    height: 44px;
+    margin-top: 33px;
+    background: #15f00000;
+    color: #787676;
+    border-radius: 4px;
+    border: 2px solid #00de00;
+}
+
+.wp-block-latest-posts__list li a{
+	text-decoration: none;
+	color: #525050;
+	transition: .4s;
+	font-size: 20px;
+}
+.wp-block-latest-posts__list li a:hover{
+	color: #00de2e;
+}
+
+.nav-links .nav-previous a{
+	text-decoration: none;
+	color: #24dc00;
+	transition: .4s;
+}
+.nav-links .nav-next a{
+	text-decoration: none;
+	color: #24dc00;
+	transition: .4s;
+}
+
+.nav-links .nav-next a:hover{
+	color: red;
+}
+.nav-links .nav-previous a:hover{
+	color: red;
+}
+.entry-content h2{
+	color: #00de00;	
+}
+.sidebar h2{
+	color: #00ee00;
+	font-weight: 600;
+	font-size: 24px;
+}
+.sidebar label{
+	color: #00ee00;
+	font-weight: 600;
+	font-size: 22px;
+}
+
+
+/* Skip Links Accessibility */
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
+  /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+}
+
+.screen-reader-text:focus {
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  clip: auto !important;
+  clip-path: none;
+  color: #21759b;
+  display: block;
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  height: auto;
+  right: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+  /* Above WP toolbar. */
+}
+
+/* Do not show the outline on the skip link target. */
+#content[tabindex="-1"]:focus {
+  outline: 0;
+}
+:focus {
+    outline: none;
+    background: #00de00;
+    color: white !important;
+}
+.menu-btn-icon:focus{
+  
+  outline: 2px dotted #00de00;
+  background:transparent !important;
+
+}
+
+article img{
+	width:auto;
+	max-width:100%;
+	height:auto;
+}
+
+.no-results{
+	text-align: center;
+}
+
+.navbar-nav{
+  width: 100%;
+  padding-top: 30px;
+}
+
+.no-results .search-form input{
+	    padding: 8px 20px;
+    border: 2px solid #11f211;
+
+}
+
+.post-password-form input{
+		padding: 0 10px;
+    border: 2px solid #53ff00;
+}
+	
+
+/* Sticky Post */
+
+main .sticky{
+	position: inherit !important;
+	box-shadow: none;
+	display:block;
+}
+
+html,
+body{
+	width: 100%;
+	overflow-x: hidden;
+}
+.tag-gallery img{
+	width: 100%;
+	height: auto;
+}
+
+.sub-menu {
+  padding:0 !important;
+  z-index:+1;
+}
