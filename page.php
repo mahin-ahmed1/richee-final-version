@@ -16,8 +16,11 @@ get_header();
 ?>
 
 	<main id="primary" class="site-main">
-
+		<?php if(display_header_text()==true):?>
+			<h2 class="text-center entry-title text-capitalize"><?php echo get_bloginfo('name');?></h2>
+			<h2 class="text-center entry-title text-capitalize"><?php echo get_bloginfo('description');?></h2>
 		<?php
+		endif;
 		while ( have_posts() ) :
 			the_post();
 
