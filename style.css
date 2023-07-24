@@ -123,6 +123,10 @@ body{
 .screen-reader-text {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
+  background:#00de00 !important;
+  color:white;
+  font-size:24px !important;
+  text-align:center;
   clip-path: inset(50%);
   height: 1px;
   margin: -1px;
