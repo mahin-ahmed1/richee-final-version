@@ -1045,6 +1045,22 @@ MEDIA QUERY FOR RESPONSIVENESS
 	    margin: auto;
 	}
 
+
+	.header-area .sub-menu {
+	display: none;
+    background: rgb(229, 255, 227);
+    padding: 15px 0px;
+    box-shadow: none;
+    width: 400px;
+    margin: auto;
+    border-radius: 10px;
+    border: none !important;
+	}
+
+	.header-area ul li a{
+		margin:0;
+	}
+
 	.container {
     padding: 20px 0 80px 0;
 	}
