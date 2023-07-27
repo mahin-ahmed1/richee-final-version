@@ -12,29 +12,15 @@
  * @subpackage Example
  * @version    2.6.1 for parent theme Richee for publication on WordPress.org
  * @author     Thomas Griffin, Gary Jones, Juliette Reinders Folmer
- * @copyright  Copyright (c) 2011, Thomas Griffin 
+ * @copyright  Copyright (c) 2011, Thomas Griffin
  * @license    http://opensource.org/licenses/gpl-2.0.php GPL v2 or later
  * @link       https://github.com/TGMPA/TGM-Plugin-Activation
  */
 
-/**
- * Include the TGM_Plugin_Activation class.
- *
- * Depending on your implementation, you may want to change the include call:
- *
- * Parent Theme:
- * require_once get_template_directory() . '/path/to/class-tgm-plugin-activation.php';
- *
- * Child Theme:
- * require_once get_stylesheet_directory() . '/path/to/class-tgm-plugin-activation.php';
- *
- * Plugin:
- * require_once dirname( __FILE__ ) . '/path/to/class-tgm-plugin-activation.php';
- */
+
 require_once get_template_directory() . '/lib/class-tgm-plugin-activation.php';
 
-add_action( 'richee_tgmpa_register', 'richee_register_required_plugins' );
-
+add_action( 'tgmpa_register', 'richee_register_required_plugins' );
 
 function richee_register_required_plugins() {
 	/*
@@ -42,8 +28,6 @@ function richee_register_required_plugins() {
 	 * If the source is NOT from the .org repo, then source is also required.
 	 */
 	$plugins = array(
-
-
 
 		// This is an example of how to include a plugin from the WordPress Plugin Repository.
 		array(
@@ -64,11 +48,9 @@ function richee_register_required_plugins() {
 			'required'  => false,
 		),
 
-		
-
 	);
 
-	
+
 	$config = array(
 		'id'           => 'richee',                 // Unique ID for hashing notices for multiple instances of TGMPA.
 		'default_path' => '',                      // Default absolute path to bundled plugins.
@@ -79,8 +61,7 @@ function richee_register_required_plugins() {
 		'is_automatic' => false,                   // Automatically activate plugins after installation or not.
 		'message'      => '',                      // Message to output right before the plugins table.
 
-		
 	);
 
-	richee_tgmpa( $plugins, $config );
+	tgmpa( $plugins, $config );
 }
