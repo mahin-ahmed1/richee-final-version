@@ -20,7 +20,7 @@
 
 require_once get_template_directory() . '/lib/class-tgm-plugin-activation.php';
 
-add_action( 'tgmpa_register', 'richee_register_required_plugins' );
+add_action( 'richee_tgmpa_register', 'richee_register_required_plugins' );
 
 function richee_register_required_plugins() {
 	/*
@@ -63,5 +63,5 @@ function richee_register_required_plugins() {
 
 	);
 
-	tgmpa( $plugins, $config );
+	richee_tgmpa( $plugins, $config );
 }
