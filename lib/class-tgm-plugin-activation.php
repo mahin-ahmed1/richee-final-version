@@ -257,7 +257,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			$this->wp_version = $GLOBALS['wp_version'];
 
 			// Announce that the class is ready, and pass the object (for advanced use).
-			do_action_ref_array( 'richee_tgmpa_init', array( $this ) );
+			do_action_ref_array( 'tgmpa_init', array( $this ) );
 
 
 
@@ -318,7 +318,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			 * @param bool $load Whether or not TGMPA should load.
 			 *                   Defaults to the return of `is_admin() && ! defined( 'DOING_AJAX' )`.
 			 */
-			if ( true !== apply_filters( 'richee_tgmpa_load', ( is_admin() && ! defined( 'DOING_AJAX' ) ) ) ) {
+			if ( true !== apply_filters( 'tgmpa_load', ( is_admin() && ! defined( 'DOING_AJAX' ) ) ) ) {
 				return;
 			}
 
@@ -397,7 +397,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				'contact_admin'                   => __( 'Please contact the administrator of this site for help.', 'richee' ),
 			);
 
-			do_action( 'richee_tgmpa_register' );
+			do_action( 'tgmpa_register' );
 
 			/* After this point, the plugins should be registered and the configuration set. */
 
@@ -560,8 +560,8 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 
 				wp_enqueue_style( 'plugin-install' );
 
-				global $tab, $richee_body_id;
-				$richee_body_id = 'plugin-information';
+				global $tab, $body_id;
+				$body_id = 'plugin-information';
 				// @codingStandardsIgnoreStart
 				$tab     = 'plugin-information';
 				// @codingStandardsIgnoreEnd
@@ -611,7 +611,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			}
 
 			$args = apply_filters(
-				'richee_tgmpa_admin_menu_args',
+				'tgmpa_admin_menu_args',
 				array(
 					'parent_slug' => $this->parent_slug,                     // Parent Menu slug.
 					'page_title'  => $this->strings['page_title'],           // Page title.
@@ -1020,7 +1020,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 */
 		public function notices() {
 			// Remove nag on the install page / Return early if the nag message has been dismissed or user < author.
-			if ( ( $this->is_tgmpa_page() || $this->is_core_update_page() ) || get_user_meta( get_current_user_id(), 'tgmpa_dismissed_notice_' . $this->id, true ) || ! current_user_can( apply_filters( 'richee_tgmpa_show_admin_notice_capability', 'publish_posts' ) ) ) {
+			if ( ( $this->is_tgmpa_page() || $this->is_core_update_page() ) || get_user_meta( get_current_user_id(), 'tgmpa_dismissed_notice_' . $this->id, true ) || ! current_user_can( apply_filters( 'tgmpa_show_admin_notice_capability', 'publish_posts' ) ) ) {
 				return;
 			}
 
@@ -1192,13 +1192,13 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				);
 			}
 
-			$action_links = apply_filters( 'richee_tgmpa_notice_action_links', $action_links );
+			$action_links = apply_filters( 'tgmpa_notice_action_links', $action_links );
 
 			$action_links = array_filter( (array) $action_links ); // Remove any empty array items.
 
 			if ( ! empty( $action_links ) ) {
 				$action_links = sprintf( $line_template, implode( ' | ', $action_links ) );
-				return apply_filters( 'richee_tgmpa_notice_rendered_action_links', $action_links );
+				return apply_filters( 'tgmpa_notice_rendered_action_links', $action_links );
 			} else {
 				return '';
 			}
@@ -1369,7 +1369,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			 * @param string $key     Sanitized key.
 			 * @param string $raw_key The key prior to sanitization.
 			 */
-			return apply_filters( 'richee_tgmpa_sanitize_key', $key, $raw_key );
+			return apply_filters( 'tgmpa_sanitize_key', $key, $raw_key );
 		}
 
 		/**
@@ -2008,19 +2008,19 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 *
 		 * @since 2.5.0
 		 */
-		function richee_load_tgm_plugin_activation() {
-			$GLOBALS['richee_tgmpa'] = TGM_Plugin_Activation::get_instance();
+		function load_tgm_plugin_activation() {
+			$GLOBALS['tgmpa'] = TGM_Plugin_Activation::get_instance();
 		}
 	}
 
 	if ( did_action( 'plugins_loaded' ) ) {
-		richee_load_tgm_plugin_activation();
+		load_tgm_plugin_activation();
 	} else {
-		add_action( 'plugins_loaded', 'richee_load_tgm_plugin_activation' );
+		add_action( 'plugins_loaded', 'load_tgm_plugin_activation' );
 	}
 }
 
-if ( ! function_exists( 'richee_tgmpa' ) ) {
+if ( ! function_exists( 'tgmpa' ) ) {
 	/**
 	 * Helper function to register a collection of required plugins.
 	 *
@@ -2030,8 +2030,8 @@ if ( ! function_exists( 'richee_tgmpa' ) ) {
 	 * @param array $plugins An array of plugin arrays.
 	 * @param array $config  Optional. An array of configuration values.
 	 */
-	function richee_tgmpa( $plugins, $config = array() ) {
-		$instance = call_user_func( array( get_class( $GLOBALS['richee_tgmpa'] ), 'get_instance' ) );
+	function tgmpa( $plugins, $config = array() ) {
+		$instance = call_user_func( array( get_class( $GLOBALS['tgmpa'] ), 'get_instance' ) );
 
 		foreach ( $plugins as $plugin ) {
 			call_user_func( array( $instance, 'register' ), $plugin );
@@ -2202,7 +2202,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 					add_action( "tgmpa_after_plugin_row_{$slug}", array( $this, 'wp_plugin_update_row' ), 10, 2 );
 				}
 
-				$table_data[ $i ] = apply_filters( 'richee_tgmpa_table_data_item', $table_data[ $i ], $plugin );
+				$table_data[ $i ] = apply_filters( 'tgmpa_table_data_item', $table_data[ $i ], $plugin );
 
 				$i++;
 			}
@@ -2554,7 +2554,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				$columns['status']  = __( 'Status', 'richee' );
 			}
 
-			return apply_filters( 'richee_tgmpa_table_columns', $columns );
+			return apply_filters( 'tgmpa_table_columns', $columns );
 		}
 
 		/**
@@ -2637,7 +2637,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 			}
 
 			$prefix = ( defined( 'WP_NETWORK_ADMIN' ) && WP_NETWORK_ADMIN ) ? 'network_admin_' : '';
-			return apply_filters( "richee_tgmpa_{$prefix}plugin_action_links", array_filter( $action_links ), $item['slug'], $item, $this->view_context );
+			return apply_filters( "tgmpa_{$prefix}plugin_action_links", array_filter( $action_links ), $item['slug'], $item, $this->view_context );
 		}
 
 		/**
@@ -2658,7 +2658,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 			 *
 			 * @since 2.5.0
 			 */
-			do_action( "richee_tgmpa_after_plugin_row_{$item['slug']}", $item['slug'], $item, $this->view_context );
+			do_action( "tgmpa_after_plugin_row_{$item['slug']}", $item['slug'], $item, $this->view_context );
 		}
 
 		/**
@@ -2864,8 +2864,8 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				unset( $slug, $name, $source );
 
 				// Create a new instance of TGMPA_Bulk_Installer.
-				$installer = new Richee_TGMPA_Bulk_Installer(
-					new Richee_TGMPA_Bulk_Installer_Skin(
+				$installer = new TGMPA_Bulk_Installer(
+					new TGMPA_Bulk_Installer_Skin(
 						array(
 							'url'          => esc_url_raw( $this->tgmpa->get_tgmpa_url() ),
 							'nonce'        => 'bulk-' . $this->_args['plural'],
@@ -2989,7 +2989,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 			}
 
 			// Store all of our plugin data into $items array so WP_List_Table can use it.
-			$this->items = apply_filters( 'richee_tgmpa_table_data_items', $this->_gather_plugin_data() );
+			$this->items = apply_filters( 'tgmpa_table_data_items', $this->_gather_plugin_data() );
 		}
 
 		/* *********** DEPRECATED METHODS *********** */
@@ -3051,12 +3051,12 @@ if ( ! class_exists( 'TGM_Bulk_Installer_Skin' ) ) {
  *
  * @since 2.2.0
  */
-add_action( 'admin_init', 'richee_tgmpa_load_bulk_installer' );
-if ( ! function_exists( 'richee_tgmpa_load_bulk_installer' ) ) {
+add_action( 'admin_init', 'tgmpa_load_bulk_installer' );
+if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 	/**
 	 * Load bulk installer
 	 */
-	function richee_tgmpa_load_bulk_installer() {
+	function tgmpa_load_bulk_installer() {
 		// Silently fail if 2.5+ is loaded *after* an older version.
 		if ( ! isset( $GLOBALS['tgmpa'] ) ) {
 			return;
@@ -3088,7 +3088,7 @@ if ( ! function_exists( 'richee_tgmpa_load_bulk_installer' ) ) {
 				 * @author  Thomas Griffin
 				 * @author  Gary Jones
 				 */
-				class Richee_TGMPA_Bulk_Installer extends Plugin_Upgrader {
+				class TGMPA_Bulk_Installer extends Plugin_Upgrader {
 					/**
 					 * Holds result of bulk plugin installation.
 					 *
@@ -3314,7 +3314,7 @@ if ( ! function_exists( 'richee_tgmpa_load_bulk_installer' ) ) {
 						 *     @type array  $packages Array of plugin, theme, or core packages to update.
 						 * }
 						 */
-						do_action( 'richee_upgrader_process_complete', $this, array(
+						do_action( 'upgrader_process_complete', $this, array(
 							'action'  => 'install', // [TGMPA + ] adjusted.
 							'type'    => 'plugin',
 							'bulk'    => true,
@@ -3399,7 +3399,7 @@ if ( ! function_exists( 'richee_tgmpa_load_bulk_installer' ) ) {
 				}
 			}
 
-			if ( ! class_exists( 'Richee_TGMPA_Bulk_Installer_Skin' ) ) {
+			if ( ! class_exists( 'TGMPA_Bulk_Installer_Skin' ) ) {
 
 				/**
 				 * Installer skin to set strings for the bulk plugin installations..
@@ -3419,7 +3419,7 @@ if ( ! function_exists( 'richee_tgmpa_load_bulk_installer' ) ) {
 				 * @author  Thomas Griffin
 				 * @author  Gary Jones
 				 */
-				class Richee_TGMPA_Bulk_Installer_Skin extends Bulk_Upgrader_Skin {
+				class TGMPA_Bulk_Installer_Skin extends Bulk_Upgrader_Skin {
 					/**
 					 * Holds plugin info for each individual plugin installation.
 					 *
@@ -3591,7 +3591,7 @@ if ( ! function_exists( 'richee_tgmpa_load_bulk_installer' ) ) {
 						 * @param array $update_actions Array of plugin action links.
 						 * @param array $plugin_info    Array of information for the last-handled plugin.
 						 */
-						$update_actions = apply_filters( 'richee_tgmpa_update_bulk_plugins_complete_actions', $update_actions, $this->plugin_info );
+						$update_actions = apply_filters( 'tgmpa_update_bulk_plugins_complete_actions', $update_actions, $this->plugin_info );
 
 						if ( ! empty( $update_actions ) ) {
 							$this->feedback( implode( ' | ', (array) $update_actions ) );
