@@ -20,7 +20,7 @@ require_once get_theme_file_path().'/inc/richee-demo-import.php';
 
 if ( ! defined( '_RICHEE_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_RICHEE_VERSION', '1.0.5'));
+	define( '_RICHEE_VERSION', '1.0.5');
 }
 
 
