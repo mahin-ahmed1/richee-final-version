@@ -1,14 +1,12 @@
 jQuery(document).ready(function($){
 
-
-if ( typeof ProgressBar == 'function' ) { 
+ 
       
       //PROGRESS-BAR PLUGIN RUN
      $(".progress-bar").ProgressBar(); 
-}
-  
-  
-if ( typeof circlechart == 'function') {
+
+
+
 
   //PROGRESS CIRCLE WITH SCROLLING EFFECTS
 
@@ -19,20 +17,16 @@ if ( typeof circlechart == 'function') {
    }
    });
 
-}
 
-
-if ( typeof onePgaeNav == 'function') {
   
   //ONE PAGE PLUGIN RUN
  $('.header-area .menu-item-type-custom .nav-link').onePgaeNav({
   wrapper: '.navbar-nav',
   speed: 400,
  });
-}
 
 
-if ( typeof owlCarousel == 'function') {
+
 
   //OWL CAROUSEL FOR TESTIMONIALS
 
@@ -70,10 +64,6 @@ if ( typeof owlCarousel == 'function') {
           }
  });
 
-}
-
-
-if ( typeof autofilter == 'function' ) {
 
   //Auto filter plugin initialize
 
@@ -84,8 +74,6 @@ if ( typeof autofilter == 'function' ) {
   
 });
  
-}
-
 
 //STICKY NAV WITH SCROLLING EFFECTS
  $(window).on('scroll',function(){
