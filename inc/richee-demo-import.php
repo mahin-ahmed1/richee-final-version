@@ -1,6 +1,23 @@
 <?php 
 
 
+function richee_import_files() {
+  return [
+    [
+      'import_file_name'           => 'Demo Richee',
+      'categories'                 => [ 'Category 1'],
+      'import_file_url'            => 'https://raw.githubusercontent.com/mahin-ahmed1/richee-demo/main/richee-content.xml',
+      'import_widget_file_url'     => 'https://raw.githubusercontent.com/mahin-ahmed1/richee-demo/main/richee-widget.wie',
+      'import_customizer_file_url' => 'https://raw.githubusercontent.com/mahin-ahmed1/richee-demo/main/richee-customizer.dat',
+      'import_preview_image_url'   => get_template_directory_uri().'/screenshot.png',
+      'preview_url'                => 'https://personal-portfoli0.netlify.app',
+    ],
+   
+  ];
+}
+add_filter( 'ocdi/import_files', 'richee_import_files' );
+
+
 
 function richee_after_import_setup() {
     // Assign menus to their locations.
